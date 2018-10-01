@@ -1,16 +1,16 @@
-package h02;
-
 import java.awt.*;
 import java.applet.*;
 
-public class opdracht1 extends Applet {
+public class elips extends Applet {
 
     public void init() {
-        setBackground(Color.blue);
     }
 
     public void paint(Graphics g) {
+        setBackground(Color.blue);
         g.setColor(Color.yellow);
-        g.drawString("Rewish Algoo", 50, 60 );
+        g.fillArc(100, 100, 200, 200, 90, 45);
+
+
     }
 }
