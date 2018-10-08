@@ -1,34 +1,51 @@
 package h08;
 
+import java.applet.Applet;
 import java.awt.*;
-import java.applet.*;
 import java.awt.event.*;
 
 public class opdracht1 extends Applet {
-    TextField tekstvak;
+    TextField tekstsvak;
     Button knop;
+    Button wisknop;
+    String schermtekst;
+    Label label;
 
     public void init() {
-        tekstvak = new TextField("", 30);
-        knop = new Button("Ok");
-        knop.addActionListener( new KnopListener() );
-        add(tekstvak);
+        schermtekst = new String();
+        knop = new Button();
+        knop.setLabel("Oke");
+        KnopListener kl = new KnopListener();
+        knop.addActionListener( kl );
         add(knop);
-        knop = new Button("wis");
-        add(knop);
-        setLocation(100,50);
+        wisknop = new Button("wis");
+        ResetListener rl = new ResetListener();
+        wisknop.addActionListener( rl );
+        add(wisknop);
+        tekstsvak = new TextField("" , 20);
+        label = new Label();
+        schermtekst = "";
+        add(label);
+        add(tekstsvak);
+        getGraphics().drawString("uw getal=",50,70);
+
+
     }
 
     public void paint(Graphics g) {
-        g.drawString("Type een hele lange tekst " +
-                "in het tekstvakje " +
-                "en klik op Ok", 50, 100 );
+        g.drawString(schermtekst, 50 ,60);
+
     }
-
-    class KnopListener implements ActionListener	{
+    class KnopListener implements ActionListener {
         public void actionPerformed( ActionEvent e ) {
-
-            tekstvak =  new TextField("", 30);
+            schermtekst = tekstsvak.getText();
+            repaint();
+        }
+    }
+    class ResetListener implements ActionListener {
+        public void actionPerformed( ActionEvent e ) {
+            tekstsvak.setText(" ");
+            repaint();
         }
     }
 }
